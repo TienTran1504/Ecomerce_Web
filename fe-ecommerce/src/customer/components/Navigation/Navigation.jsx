@@ -388,7 +388,7 @@ export default function Navigation() {
                                                     cursor: "pointer",
                                                 }}
                                             >
-                                                R
+                                                T
                                             </Avatar>
                                             {/* <Button
                         id="basic-button"
