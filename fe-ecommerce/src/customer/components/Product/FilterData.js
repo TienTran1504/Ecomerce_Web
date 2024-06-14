@@ -61,5 +61,13 @@ export const singleFilter = [
             { value: '80', label: '80% And Above' },
 
         ]
+    },
+    {
+        id: 'availability',
+        name: 'Availability',
+        options: [
+            { value: '1', label: 'In Stock' },
+            { value: '0', label: 'Out Of Stock' },
+        ]
     }
 ]
