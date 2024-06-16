@@ -2,13 +2,9 @@ package com.ecommerce.be_ecommerce.model;
 
 import jakarta.persistence.*;
 
-@Entity
-@Table(name="payment_information")
+
 public class PaymentInformation {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @Column(name="cardholder_name")
     private String cardholderName;
