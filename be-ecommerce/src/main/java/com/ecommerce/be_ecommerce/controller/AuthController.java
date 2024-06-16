@@ -2,10 +2,12 @@ package com.ecommerce.be_ecommerce.controller;
 
 import com.ecommerce.be_ecommerce.config.JwtProvider;
 import com.ecommerce.be_ecommerce.exception.UserException;
+import com.ecommerce.be_ecommerce.model.Cart;
 import com.ecommerce.be_ecommerce.model.User;
 import com.ecommerce.be_ecommerce.repository.UserRepository;
 import com.ecommerce.be_ecommerce.request.LoginRequest;
 import com.ecommerce.be_ecommerce.response.AuthResponse;
+import com.ecommerce.be_ecommerce.service.CartService;
 import com.ecommerce.be_ecommerce.service.impl.CustomUserServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,11 +32,14 @@ public class AuthController {
     private PasswordEncoder passwordEncoder;
     private CustomUserServiceImpl customUserServiceImpl;
 
-    public AuthController(UserRepository userRepository, JwtProvider jwtProvider, PasswordEncoder passwordEncoder, CustomUserServiceImpl customUserServiceImpl){
+    private CartService cartService;
+
+    public AuthController(UserRepository userRepository, JwtProvider jwtProvider, PasswordEncoder passwordEncoder, CustomUserServiceImpl customUserServiceImpl, CartService cartService){
         this.userRepository = userRepository;
         this.jwtProvider = jwtProvider;
         this.passwordEncoder = passwordEncoder;
         this.customUserServiceImpl = customUserServiceImpl;
+        this.cartService = cartService;
 
     }
 
@@ -59,6 +64,7 @@ public class AuthController {
         createdUser.setLastName(lastName);
 
         User savedUser = userRepository.save(createdUser);
+        Cart cart = cartService.createCart(savedUser);
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(savedUser.getEmail(), savedUser.getPassword());
         SecurityContextHolder.getContext().setAuthentication(authentication);

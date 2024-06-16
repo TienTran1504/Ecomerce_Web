@@ -60,7 +60,7 @@ public class CartItemServiceImpl implements CartItemService {
         CartItem cartItem = findCartItemById(cartItemId);
         User user = userService.findUserById(userId);
         if(user.getId().equals(userId)){
-            cartItemRepository.deleteById(cartItemId);
+            cartItemRepository.delete(cartItem);
         }
         else {
             throw new UserException("You can't remove another users item");

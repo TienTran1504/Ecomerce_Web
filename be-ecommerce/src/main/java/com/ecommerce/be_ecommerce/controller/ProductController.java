@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/product")
+@RequestMapping("/api")
 public class ProductController {
     private ProductService productService;
 
@@ -32,7 +32,7 @@ public class ProductController {
                                                                 @RequestParam Integer pageSize) {
 
         Page<Product> res = productService.getAllProducts(category, color, size, minPrice, maxPrice, minDiscount, sort, stock, pageNumber, pageSize);
-        return new ResponseEntity<Page<Product>>(res, res.isEmpty() ? HttpStatus.NO_CONTENT : HttpStatus.OK);
+        return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
     @GetMapping("/products/id/{productId}")
