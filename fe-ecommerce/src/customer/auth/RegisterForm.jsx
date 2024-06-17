@@ -13,6 +13,7 @@ const RegisterForm = () => {
     useEffect(() => {
         if (jwt) {
             dispatch(getUser(jwt))
+            navigate('/')
         }
     }, [jwt, auth.jwt])
 

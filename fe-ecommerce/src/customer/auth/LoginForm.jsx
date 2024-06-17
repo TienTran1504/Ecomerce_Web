@@ -12,7 +12,7 @@ const LoginForm = () => {
     useEffect(() => {
         if (jwt) {
             dispatch(getUser(jwt))
-            // navigate('/')
+            navigate('/')
         }
     }, [jwt, auth.jwt])
     const handleSubmit = (e) => {

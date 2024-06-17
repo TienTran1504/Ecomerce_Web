@@ -45,7 +45,7 @@ export default function Navigation() {
     };
     const handleClose = () => {
         setOpenAuthModal(false);
-        navigate('/')
+        // navigate('/')
     };
 
     const handleCategoryClick = (category, section, item, close) => {
