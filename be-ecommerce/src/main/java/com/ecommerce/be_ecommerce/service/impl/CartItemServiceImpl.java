@@ -40,11 +40,21 @@ public class CartItemServiceImpl implements CartItemService {
     public CartItem updateCartItem(Long userId, Long id, CartItem cartItem) throws CartItemException, UserException {
         CartItem item = findCartItemById(id);
         User user = userService.findUserById(userId);
+
         if(user.getId().equals(userId)){
             item.setQuantity(cartItem.getQuantity());
-            item.setPrice(item.getProduct().getPrice() * item.getQuantity());
-            item.setDiscountedPrice(cartItem.getProduct().getDiscountedPrice() * item.getQuantity());
+
+            Product product = item.getProduct();
+            if (product != null) {
+                item.setPrice(product.getPrice() * item.getQuantity());
+                item.setDiscountedPrice(product.getDiscountedPrice() * item.getQuantity());
+            } else {
+                throw new CartItemException("Product associated with the cart item is null");
+            }
+        } else {
+            throw new UserException("User ID does not match");
         }
+
         return cartItemRepository.save(item);
     }
 

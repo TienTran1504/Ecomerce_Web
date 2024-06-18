@@ -5,22 +5,22 @@ public class PaymentDetails {
     private String paymentMethod;
     private String status;
     private String paymentId;
-    private String razorpayPaymentLinkId;
-    private String razorpayPaymentLinkReferenceId;
-    private String razorpayPaymentLinkStatus;
-    private String razorpayPaymentId;
+    private String stripepayPaymentLinkId;
+    private String stripepayPaymentLinkReferenceId;
+    private String stripepayPaymentLinkStatus;
+    private String stripepayPaymentId;
      public PaymentDetails() {
 
      }
 
-    public PaymentDetails(String paymentMethod, String status, String paymentId, String razorpayPaymentLinkId, String razorpayPaymentLinkReferenceId, String razorpayPaymentLinkStatus, String razorpayPaymentId) {
+    public PaymentDetails(String paymentMethod, String status, String paymentId, String stripepayPaymentLinkId, String stripepayPaymentLinkReferenceId, String stripepayPaymentLinkStatus, String stripepayPaymentId) {
         this.paymentMethod = paymentMethod;
         this.status = status;
         this.paymentId = paymentId;
-        this.razorpayPaymentLinkId = razorpayPaymentLinkId;
-        this.razorpayPaymentLinkReferenceId = razorpayPaymentLinkReferenceId;
-        this.razorpayPaymentLinkStatus = razorpayPaymentLinkStatus;
-        this.razorpayPaymentId = razorpayPaymentId;
+        this.stripepayPaymentLinkId = stripepayPaymentLinkId;
+        this.stripepayPaymentLinkReferenceId = stripepayPaymentLinkReferenceId;
+        this.stripepayPaymentLinkStatus = stripepayPaymentLinkStatus;
+        this.stripepayPaymentId = stripepayPaymentId;
     }
 
     public String getPaymentMethod() {
@@ -47,35 +47,35 @@ public class PaymentDetails {
         this.paymentId = paymentId;
     }
 
-    public String getRazorpayPaymentLinkId() {
-        return razorpayPaymentLinkId;
+    public String getStripepayPaymentLinkId() {
+        return stripepayPaymentLinkId;
     }
 
-    public void setRazorpayPaymentLinkId(String razorpayPaymentLinkId) {
-        this.razorpayPaymentLinkId = razorpayPaymentLinkId;
+    public void setStripepayPaymentLinkId(String stripepayPaymentLinkId) {
+        this.stripepayPaymentLinkId = stripepayPaymentLinkId;
     }
 
-    public String getRazorpayPaymentLinkReferenceId() {
-        return razorpayPaymentLinkReferenceId;
+    public String getStripepayPaymentLinkReferenceId() {
+        return stripepayPaymentLinkReferenceId;
     }
 
-    public void setRazorpayPaymentLinkReferenceId(String razorpayPaymentLinkReferenceId) {
-        this.razorpayPaymentLinkReferenceId = razorpayPaymentLinkReferenceId;
+    public void setStripepayPaymentLinkReferenceId(String stripepayPaymentLinkReferenceId) {
+        this.stripepayPaymentLinkReferenceId = stripepayPaymentLinkReferenceId;
     }
 
-    public String getRazorpayPaymentLinkStatus() {
-        return razorpayPaymentLinkStatus;
+    public String getStripepayPaymentLinkStatus() {
+        return stripepayPaymentLinkStatus;
     }
 
-    public void setRazorpayPaymentLinkStatus(String razorpayPaymentLinkStatus) {
-        this.razorpayPaymentLinkStatus = razorpayPaymentLinkStatus;
+    public void setStripepayPaymentLinkStatus(String stripepayPaymentLinkStatus) {
+        this.stripepayPaymentLinkStatus = stripepayPaymentLinkStatus;
     }
 
-    public String getRazorpayPaymentId() {
-        return razorpayPaymentId;
+    public String getStripepayPaymentId() {
+        return stripepayPaymentId;
     }
 
-    public void setRazorpayPaymentId(String razorpayPaymentId) {
-        this.razorpayPaymentId = razorpayPaymentId;
+    public void setStripepayPaymentId(String stripepayPaymentId) {
+        this.stripepayPaymentId = stripepayPaymentId;
     }
 }
