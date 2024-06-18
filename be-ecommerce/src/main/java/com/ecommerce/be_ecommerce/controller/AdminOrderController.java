@@ -14,6 +14,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/admin/orders")
+@SecurityRequirement(
+        name = "Bearer Authentication"
+)
 public class AdminOrderController {
     @Autowired
     private OrderService orderService;

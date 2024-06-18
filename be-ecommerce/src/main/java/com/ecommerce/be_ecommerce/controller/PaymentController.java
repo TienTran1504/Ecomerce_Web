@@ -6,6 +6,7 @@ import com.ecommerce.be_ecommerce.repository.OrderRepository;
 import com.ecommerce.be_ecommerce.response.PaymentLinkResponse;
 import com.ecommerce.be_ecommerce.service.OrderService;
 import com.ecommerce.be_ecommerce.service.UserService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
+@SecurityRequirement(
+        name = "Bearer Authentication"
+)
 public class PaymentController {
     @Value("${stripe.publish.key}")
     private String stripePublishKey;

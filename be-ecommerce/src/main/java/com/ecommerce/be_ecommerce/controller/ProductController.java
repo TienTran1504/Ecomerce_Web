@@ -3,6 +3,7 @@ package com.ecommerce.be_ecommerce.controller;
 import com.ecommerce.be_ecommerce.exception.ProductException;
 import com.ecommerce.be_ecommerce.model.Product;
 import com.ecommerce.be_ecommerce.service.ProductService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@SecurityRequirement(
+        name = "Bearer Authentication"
+)
 public class ProductController {
     private ProductService productService;
 

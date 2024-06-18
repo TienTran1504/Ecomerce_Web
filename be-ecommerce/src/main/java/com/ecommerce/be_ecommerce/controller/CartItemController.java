@@ -7,6 +7,7 @@ import com.ecommerce.be_ecommerce.model.User;
 import com.ecommerce.be_ecommerce.response.ApiResponse;
 import com.ecommerce.be_ecommerce.service.CartItemService;
 import com.ecommerce.be_ecommerce.service.UserService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/cart_items")
+@SecurityRequirement(
+        name = "Bearer Authentication"
+)
 public class CartItemController {
     @Autowired
     private UserService userService;

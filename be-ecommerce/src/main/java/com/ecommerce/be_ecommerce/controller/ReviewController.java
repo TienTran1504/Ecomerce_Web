@@ -6,6 +6,7 @@ import com.ecommerce.be_ecommerce.model.Review;
 import com.ecommerce.be_ecommerce.request.ReviewRequest;
 import com.ecommerce.be_ecommerce.service.ReviewService;
 import com.ecommerce.be_ecommerce.service.UserService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/reviews")
+@SecurityRequirement(
+        name = "Bearer Authentication"
+)
 public class ReviewController {
     @Autowired
     private ReviewService reviewService;

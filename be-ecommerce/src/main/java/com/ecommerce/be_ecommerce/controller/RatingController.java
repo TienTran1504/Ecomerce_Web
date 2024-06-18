@@ -7,6 +7,7 @@ import com.ecommerce.be_ecommerce.model.User;
 import com.ecommerce.be_ecommerce.request.RatingRequest;
 import com.ecommerce.be_ecommerce.service.RatingService;
 import com.ecommerce.be_ecommerce.service.UserService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/ratings")
-
+@SecurityRequirement(
+        name = "Bearer Authentication"
+)
 public class RatingController {
     @Autowired
     private UserService userService;
