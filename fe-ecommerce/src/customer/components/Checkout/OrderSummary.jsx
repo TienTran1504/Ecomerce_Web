@@ -5,6 +5,7 @@ import CartItem from '../Cart/CartItem'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { getOrderById } from '../../../State/Order/Action'
+import { loadStripe } from '@stripe/stripe-js';
 
 const OrderSummary = () => {
     const dispatch = useDispatch();
@@ -12,6 +13,23 @@ const OrderSummary = () => {
     const { order } = useSelector(store => store)
     const searchParams = new URLSearchParams(location.search);
     const orderId = searchParams.get('order_id');
+    const publishKey = process.env.stripe_publish_key
+    const secretKey = process.env.stripe_secret_key
+    const makePayment = async () => {
+        console.log(publishKey)
+        console.log(secretKey)
+        const stripe = await loadStripe(publishKey)
+        const body = {
+            products: order.order?.orderItems,
+
+        }
+        const headers = {
+            'Content-Type': 'application/json',
+
+        }
+
+    }
+
     useEffect(() => {
         dispatch(getOrderById(orderId))
     }, [orderId])
@@ -60,7 +78,7 @@ const OrderSummary = () => {
                                     </span>
                                 </div>
                             </div>
-                            <Button variant="contained" className='w-full mt-5' sx={{ px: "2.5rem", py: ".7rem", bgcolor: "#9155fd" }}>
+                            <Button onClick={makePayment} variant="contained" className='w-full mt-5' sx={{ px: "2.5rem", py: ".7rem", bgcolor: "#9155fd" }}>
                                 Checkout
                             </Button>
 
