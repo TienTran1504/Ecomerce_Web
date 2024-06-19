@@ -7,6 +7,9 @@ import com.ecommerce.be_ecommerce.model.Order;
 import com.ecommerce.be_ecommerce.model.User;
 import com.ecommerce.be_ecommerce.service.OrderService;
 import com.ecommerce.be_ecommerce.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,12 +19,17 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/orders")
+@SecurityRequirement(
+        name = "Bearer Authentication"
+)
+@Tag(name = "Order", description = "APIs for Order Management")
 public class OrderController {
     @Autowired
     private OrderService orderService;
     @Autowired
     private UserService userService;
 
+    @Operation(summary = "Create order")
     @PostMapping
     public ResponseEntity<Order>createOrder(@RequestBody Address shippingAddress, @RequestHeader("Authorization") String token) throws UserException, OrderException {
         User user = userService.findUserProfileByJwt(token);
@@ -29,6 +37,7 @@ public class OrderController {
         return new ResponseEntity<Order>(order, HttpStatus.CREATED);
     }
 
+    @Operation(summary = "Get user orders history")
     @GetMapping("/user")
     public ResponseEntity<List<Order>> userOrderHistory(@RequestHeader("Authorization") String token) throws UserException {
         User user = userService.findUserProfileByJwt(token);
@@ -36,6 +45,7 @@ public class OrderController {
         return new ResponseEntity<List<Order>>(orders, HttpStatus.CREATED);
     }
 
+    @Operation(summary = "Get order by id")
     @GetMapping("/{orderId}")
     public ResponseEntity<Order> findOrderById(
             @PathVariable Long orderId,

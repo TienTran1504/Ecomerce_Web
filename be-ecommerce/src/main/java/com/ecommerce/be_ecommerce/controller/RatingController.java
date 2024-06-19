@@ -7,6 +7,9 @@ import com.ecommerce.be_ecommerce.model.User;
 import com.ecommerce.be_ecommerce.request.RatingRequest;
 import com.ecommerce.be_ecommerce.service.RatingService;
 import com.ecommerce.be_ecommerce.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +19,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/ratings")
-
+@SecurityRequirement(
+        name = "Bearer Authentication"
+)
+@Tag(name = "Rating", description = "APIs for Rating Management")
 public class RatingController {
     @Autowired
     private UserService userService;
@@ -24,6 +30,7 @@ public class RatingController {
     @Autowired
     private RatingService ratingService;
 
+    @Operation(description = "Create Rating")
     @PostMapping("/create")
     public ResponseEntity<Rating> createRating(@RequestBody RatingRequest req, @RequestHeader("Authorization") String token)
     throws UserException, ProductException {
@@ -33,6 +40,7 @@ public class RatingController {
 
     }
 
+    @Operation(description = "Get Product's Rating")
     @GetMapping("/product/{productId}")
     public ResponseEntity<List<Rating>> getProductsRating(@PathVariable Long productId, @RequestHeader("Authorization") String token) throws UserException, ProductException{
         User user = userService.findUserProfileByJwt(token);

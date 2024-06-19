@@ -9,6 +9,8 @@ import com.ecommerce.be_ecommerce.request.LoginRequest;
 import com.ecommerce.be_ecommerce.response.AuthResponse;
 import com.ecommerce.be_ecommerce.service.CartService;
 import com.ecommerce.be_ecommerce.service.impl.CustomUserServiceImpl;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth")
+@Tag(name = "Authentication", description = "APIs for Authentication")
 public class AuthController {
 
     private UserRepository userRepository;
@@ -33,6 +36,7 @@ public class AuthController {
     private CustomUserServiceImpl customUserServiceImpl;
 
     private CartService cartService;
+
 
     public AuthController(UserRepository userRepository, JwtProvider jwtProvider, PasswordEncoder passwordEncoder, CustomUserServiceImpl customUserServiceImpl, CartService cartService){
         this.userRepository = userRepository;
@@ -44,6 +48,7 @@ public class AuthController {
     }
 
 
+    @Operation(description = "Create User")
     @PostMapping("/signup")
     public ResponseEntity<AuthResponse> createUserHandler(@RequestBody User user) throws UserException{
         String email = user.getEmail();
@@ -77,6 +82,7 @@ public class AuthController {
 
     }
 
+    @Operation(description = "Login User")
     @PostMapping("/signin")
     public ResponseEntity<AuthResponse> loginUserHandler(@RequestBody LoginRequest loginRequest) throws UserException{
         String username = loginRequest.getEmail();
