@@ -11,16 +11,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 @OpenAPIDefinition(
 		info = @Info(
-				title = "Spring Boot Blog REST API",
+				title = "Spring Boot Ecommerce REST API",
 				version = "v1.0",
-				description = "Spring Boot Blog REST APIs Documentation",
+				description = "Spring Boot Ecommerce REST APIs Documentation",
 				contact = @Contact(
 						name = "Tien Tran",
 						url = "https://www.github.com/TienTran1504"
 				)
 		),
 		externalDocs = @ExternalDocumentation(
-				description = "Spring Boot Ecommerce  GitHub Link",
+				description = "Ecommerce  GitHub Link",
 				url = "https://github.com/TienTran1504/Ecomerce_Web"
 		)
 )

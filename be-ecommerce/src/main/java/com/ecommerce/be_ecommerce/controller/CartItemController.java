@@ -7,7 +7,9 @@ import com.ecommerce.be_ecommerce.model.User;
 import com.ecommerce.be_ecommerce.response.ApiResponse;
 import com.ecommerce.be_ecommerce.service.CartItemService;
 import com.ecommerce.be_ecommerce.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 @SecurityRequirement(
         name = "Bearer Authentication"
 )
+@Tag(name = "Cart Item", description = "APIs for Cart Items")
 public class CartItemController {
     @Autowired
     private UserService userService;
@@ -25,8 +28,7 @@ public class CartItemController {
     private CartItemService cartItemService;
 
     @DeleteMapping("/{cartItemId}")
-//    @Operation(description = "Remove Cart Item from Cart")
-//    io.swagger.v3.oas.annotations.responses.ApiResponse( description = "Cart Item Removed Successfully"),
+    @Operation(description = "Remove Cart Item from Cart")
     public ResponseEntity<ApiResponse> removeCartItem(@PathVariable Long cartItemId, @RequestHeader("Authorization") String token) throws UserException, CartItemException {
         User user = userService.findUserProfileByJwt(token);
         cartItemService.removeCartItem(user.getId(), cartItemId);
@@ -36,7 +38,7 @@ public class CartItemController {
         return new ResponseEntity<ApiResponse>(res, HttpStatus.OK);
     }
     @PutMapping("/{cartItemId}")
-//    @Operation(description = "Update Cart Item In Cart")
+    @Operation(description = "Update Cart Item In Cart")
     public ResponseEntity<CartItem> updateCartItem(
             @RequestBody CartItem cartItem,
             @PathVariable Long cartItemId,

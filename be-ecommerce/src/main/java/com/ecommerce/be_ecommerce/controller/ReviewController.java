@@ -6,7 +6,9 @@ import com.ecommerce.be_ecommerce.model.Review;
 import com.ecommerce.be_ecommerce.request.ReviewRequest;
 import com.ecommerce.be_ecommerce.service.ReviewService;
 import com.ecommerce.be_ecommerce.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,18 +21,21 @@ import java.util.List;
 @SecurityRequirement(
         name = "Bearer Authentication"
 )
+@Tag(name = "Review", description = "APIs for Review Management")
 public class ReviewController {
     @Autowired
     private ReviewService reviewService;
     @Autowired
     private UserService userService;
 
+    @Operation(description = "Create a Review")
     @PostMapping("/create")
     public ResponseEntity<Review> createReview(@RequestBody ReviewRequest req, @RequestHeader("Authorization") String token) throws UserException, ProductException {
         Review review = reviewService.createReview(req, userService.findUserProfileByJwt(token));
       return new ResponseEntity<Review>(review, HttpStatus.CREATED);
     }
 
+    @Operation(description = "Get Product's Review")
     @GetMapping("/product/{productId}")
     public ResponseEntity<List<Review>> getProductsReview(@PathVariable Long productId) throws UserException,ProductException {
         List<Review> reviews = reviewService.getAllReview(productId);

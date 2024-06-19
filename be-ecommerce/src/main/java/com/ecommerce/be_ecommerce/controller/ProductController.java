@@ -3,7 +3,9 @@ package com.ecommerce.be_ecommerce.controller;
 import com.ecommerce.be_ecommerce.exception.ProductException;
 import com.ecommerce.be_ecommerce.model.Product;
 import com.ecommerce.be_ecommerce.service.ProductService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,7 @@ import java.util.List;
 @SecurityRequirement(
         name = "Bearer Authentication"
 )
+@Tag(name = "Product", description = "APIs for Products")
 public class ProductController {
     private ProductService productService;
 
@@ -23,6 +26,7 @@ public class ProductController {
         this.productService = productService;
     }
 
+    @Operation(summary = "Get all products (with filters)")
     @GetMapping("/products")
     public ResponseEntity<Page<Product>> findProductByCategory(@RequestParam("category") String category,
                                                                @RequestParam List<String> color,
@@ -39,6 +43,7 @@ public class ProductController {
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
+    @Operation(summary = "Get product by id")
     @GetMapping("/products/id/{productId}")
     public ResponseEntity<Product> findProductById(@PathVariable Long productId) throws ProductException {
         Product res = productService.findProductById(productId);

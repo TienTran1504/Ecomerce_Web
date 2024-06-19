@@ -5,7 +5,9 @@ import com.ecommerce.be_ecommerce.model.Product;
 import com.ecommerce.be_ecommerce.request.CreateProductRequest;
 import com.ecommerce.be_ecommerce.response.ApiResponse;
 import com.ecommerce.be_ecommerce.service.ProductService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,16 +20,19 @@ import java.util.List;
 @SecurityRequirement(
         name = "Bearer Authentication"
 )
+@Tag(name = "Admin Product", description = "APIs for Admin to manage products")
 public class AdminProductController {
     @Autowired
     private ProductService productService;
 
+    @Operation(summary = "Create a new product")
     @PostMapping
     public ResponseEntity<Product> createProduct(@RequestBody CreateProductRequest req){
         Product product = productService.createProduct(req);
         return new ResponseEntity<Product>(product, HttpStatus.CREATED);
     }
 
+    @Operation(summary = "Delete a product")
     @DeleteMapping("/{productId}/delete")
     public ResponseEntity<ApiResponse> deleteProduct(@PathVariable Long productId) throws ProductException{
         productService.deleteProduct(productId);
@@ -37,6 +42,7 @@ public class AdminProductController {
         return new ResponseEntity<ApiResponse>(res, HttpStatus.OK);
     }
 
+    @Operation(summary = "Get all products")
     @GetMapping("/all")
     public ResponseEntity<List<Product>> getAllProducts() {
         List<Product> products = productService.findAllProducts();
@@ -44,12 +50,14 @@ public class AdminProductController {
 
     }
 
+    @Operation(summary = "Update a product")
     @PutMapping("/{productId}/update")
     public ResponseEntity<Product> updateProduct(@RequestBody Product product, @PathVariable Long productId) throws ProductException{
         Product updatedProduct = productService.updateProduct(productId, product);
         return new ResponseEntity<Product>(updatedProduct, HttpStatus.OK);
     }
 
+    @Operation(summary = "Create multiple products")
     @PostMapping("/create-multi")
     public ResponseEntity<ApiResponse> createMultipleProducts(@RequestBody CreateProductRequest[] req){
         for(CreateProductRequest product: req){
