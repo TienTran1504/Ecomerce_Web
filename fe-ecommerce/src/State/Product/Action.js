@@ -49,6 +49,7 @@ export const createProduct = (product) => {
             dispatch({ type: CREATE_PRODUCT_REQUEST })
             const { data } = await api.post(`/api/admin/products`, product)
             dispatch({ type: CREATE_PRODUCT_SUCCESS, payload: data })
+            console.log('Create Product', data)
         } catch (error) {
             dispatch({ type: CREATE_PRODUCT_FAILURE, payload: error.message })
         }

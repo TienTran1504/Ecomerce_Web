@@ -51,7 +51,7 @@ const CreateProductForm = () => {
 
     }
     return (
-        <Fragment >
+        <div className='p-10' >
             <Typography
                 variant='h3'
                 sx={{ textAlign: 'center' }}
@@ -61,7 +61,7 @@ const CreateProductForm = () => {
             </Typography>
             <form
                 onSubmit={handleSubmit}
-                className='createProductContainer min-h-screen'
+                className='createProductContainer min-h-screen '
             >
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
@@ -185,6 +185,7 @@ const CreateProductForm = () => {
                                 <MenuItem value='t-shirts'>T-Shirts</MenuItem>
                                 <MenuItem value='saree'>Saree</MenuItem>
                                 <MenuItem value='lengha_choli'>Lengha Choli</MenuItem>
+                                <MenuItem value='mens_kurta'>Mens Kurta</MenuItem>
                             </Select>
                         </FormControl>
                     </Grid>
@@ -238,7 +239,7 @@ const CreateProductForm = () => {
                     </Grid>
                 </Grid>
             </form>
-        </Fragment>
+        </div>
     )
 }
 
