@@ -1,11 +1,15 @@
 import { Avatar, Button, Card, CardHeader, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import React, { useEffect } from 'react'
-import { findProducts } from '../../State/Product/Action'
+import { deleteProduct, findProducts } from '../../State/Product/Action'
 import { useDispatch, useSelector } from 'react-redux'
 
 const ProductsTable = () => {
     const dispatch = useDispatch()
     const { products } = useSelector(state => state)
+
+    const handleProductDelete = (productId) => {
+        dispatch(deleteProduct(productId))
+    }
 
 
 
@@ -23,7 +27,7 @@ const ProductsTable = () => {
             stock: ""
         }
         dispatch(findProducts(data))
-    }, [])
+    }, [products.deletedProduct])
     return (
         <div className='p-5  '>
             <Card
@@ -65,7 +69,7 @@ const ProductsTable = () => {
                                 <TableCell align="left">{row.price}</TableCell>
                                 <TableCell align="left">{row.quantity}</TableCell>
                                 <TableCell align="left">
-                                    <Button variant='outlined'> Delete</Button>
+                                    <Button onClick={() => handleProductDelete(row.id)} variant='outlined'> Delete</Button>
                                 </TableCell>
 
                             </TableRow>
