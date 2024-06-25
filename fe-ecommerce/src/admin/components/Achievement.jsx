@@ -16,7 +16,7 @@ const TrophyImg = styled('img')({
 })
 const Achievement = () => {
     return (
-        <Card className='space-y-5' sx={{ position: "relative", bgcolor: "#242B2E", color: "white" }}>
+        <Card className='space-y-5' sx={{ position: "relative" }}>
             <CardContent>
                 <Typography variant="h6" sx={{ letterSpacing: ".25px" }}>
                     Shop With Zosh
