@@ -28,6 +28,10 @@ public class CartItemController {
     private CartItemService cartItemService;
 
     @DeleteMapping("/{cartItemId}")
+    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+            responseCode = "200",
+            description = "Item removed from cart"
+    )
     @Operation(description = "Remove Cart Item from Cart")
     public ResponseEntity<ApiResponse> removeCartItem(@PathVariable Long cartItemId, @RequestHeader("Authorization") String token) throws UserException, CartItemException {
         User user = userService.findUserProfileByJwt(token);
@@ -38,6 +42,10 @@ public class CartItemController {
         return new ResponseEntity<ApiResponse>(res, HttpStatus.OK);
     }
     @PutMapping("/{cartItemId}")
+    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+            responseCode = "200",
+            description = "Item updated in cart"
+    )
     @Operation(description = "Update Cart Item In Cart")
     public ResponseEntity<CartItem> updateCartItem(
             @RequestBody CartItem cartItem,

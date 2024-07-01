@@ -8,6 +8,7 @@ import com.ecommerce.be_ecommerce.request.RatingRequest;
 import com.ecommerce.be_ecommerce.service.RatingService;
 import com.ecommerce.be_ecommerce.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,10 @@ public class RatingController {
     private RatingService ratingService;
 
     @Operation(description = "Create Rating")
+    @ApiResponse(
+            responseCode = "201",
+            description = "Rating created"
+    )
     @PostMapping("/create")
     public ResponseEntity<Rating> createRating(@RequestBody RatingRequest req, @RequestHeader("Authorization") String token)
     throws UserException, ProductException {
@@ -41,6 +46,10 @@ public class RatingController {
     }
 
     @Operation(description = "Get Product's Rating")
+    @ApiResponse(
+            responseCode = "200",
+            description = "List of ratings"
+    )
     @GetMapping("/product/{productId}")
     public ResponseEntity<List<Rating>> getProductsRating(@PathVariable Long productId, @RequestHeader("Authorization") String token) throws UserException, ProductException{
         User user = userService.findUserProfileByJwt(token);

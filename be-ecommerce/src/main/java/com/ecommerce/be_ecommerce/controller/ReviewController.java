@@ -7,6 +7,7 @@ import com.ecommerce.be_ecommerce.request.ReviewRequest;
 import com.ecommerce.be_ecommerce.service.ReviewService;
 import com.ecommerce.be_ecommerce.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,10 @@ public class ReviewController {
     private UserService userService;
 
     @Operation(description = "Create a Review")
+    @ApiResponse(
+            responseCode = "201",
+            description = "Review created"
+    )
     @PostMapping("/create")
     public ResponseEntity<Review> createReview(@RequestBody ReviewRequest req, @RequestHeader("Authorization") String token) throws UserException, ProductException {
         Review review = reviewService.createReview(req, userService.findUserProfileByJwt(token));
@@ -36,6 +41,10 @@ public class ReviewController {
     }
 
     @Operation(description = "Get Product's Review")
+    @ApiResponse(
+            responseCode = "200",
+            description = "List of reviews"
+    )
     @GetMapping("/product/{productId}")
     public ResponseEntity<List<Review>> getProductsReview(@PathVariable Long productId) throws UserException,ProductException {
         List<Review> reviews = reviewService.getAllReview(productId);

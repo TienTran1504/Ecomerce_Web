@@ -4,6 +4,7 @@ import com.ecommerce.be_ecommerce.exception.ProductException;
 import com.ecommerce.be_ecommerce.model.Product;
 import com.ecommerce.be_ecommerce.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
@@ -27,6 +28,10 @@ public class ProductController {
     }
 
     @Operation(summary = "Get all products (with filters)")
+    @ApiResponse(
+            responseCode = "200",
+            description = "List of products"
+    )
     @GetMapping("/products")
     public ResponseEntity<Page<Product>> findProductByCategory(@RequestParam("category") String category,
                                                                @RequestParam List<String> color,
@@ -44,6 +49,10 @@ public class ProductController {
     }
 
     @Operation(summary = "Get product by id")
+    @ApiResponse(
+            responseCode = "200",
+            description = "Product found"
+    )
     @GetMapping("/products/id/{productId}")
     public ResponseEntity<Product> findProductById(@PathVariable Long productId) throws ProductException {
         Product res = productService.findProductById(productId);
