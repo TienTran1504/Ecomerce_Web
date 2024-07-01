@@ -10,6 +10,7 @@ import com.ecommerce.be_ecommerce.response.AuthResponse;
 import com.ecommerce.be_ecommerce.service.CartService;
 import com.ecommerce.be_ecommerce.service.impl.CustomUserServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,6 +50,10 @@ public class AuthController {
 
 
     @Operation(description = "Create User")
+    @ApiResponse(
+            responseCode = "201",
+            description = "User created"
+    )
     @PostMapping("/signup")
     public ResponseEntity<AuthResponse> createUserHandler(@RequestBody User user) throws UserException{
         String email = user.getEmail();
@@ -83,6 +88,10 @@ public class AuthController {
     }
 
     @Operation(description = "Login User")
+    @ApiResponse(
+            responseCode = "200",
+            description = "User logged in"
+    )
     @PostMapping("/signin")
     public ResponseEntity<AuthResponse> loginUserHandler(@RequestBody LoginRequest loginRequest) throws UserException{
         String username = loginRequest.getEmail();

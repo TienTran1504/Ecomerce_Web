@@ -8,6 +8,7 @@ import com.ecommerce.be_ecommerce.model.User;
 import com.ecommerce.be_ecommerce.service.OrderService;
 import com.ecommerce.be_ecommerce.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,10 @@ public class OrderController {
     private UserService userService;
 
     @Operation(summary = "Create order")
+    @ApiResponse(
+            responseCode = "201",
+            description = "Order created"
+    )
     @PostMapping
     public ResponseEntity<Order>createOrder(@RequestBody Address shippingAddress, @RequestHeader("Authorization") String token) throws UserException, OrderException {
         User user = userService.findUserProfileByJwt(token);
@@ -38,6 +43,10 @@ public class OrderController {
     }
 
     @Operation(summary = "Get user orders history")
+    @ApiResponse(
+            responseCode = "201",
+            description = "List of orders"
+    )
     @GetMapping("/user")
     public ResponseEntity<List<Order>> userOrderHistory(@RequestHeader("Authorization") String token) throws UserException {
         User user = userService.findUserProfileByJwt(token);

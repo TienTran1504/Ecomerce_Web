@@ -30,6 +30,10 @@ public class CartController {
     private UserService userService;
 
     @Operation(description = "Get User's Cart")
+    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+            responseCode = "200",
+            description = "User's Cart"
+    )
     @GetMapping
     public ResponseEntity<Cart>findUserCart(@RequestHeader("Authorization") String token) throws UserException {
         User user = userService.findUserProfileByJwt(token);
@@ -38,6 +42,10 @@ public class CartController {
     }
 
     @PutMapping("/add")
+    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+            responseCode = "200",
+            description = "Item added to cart"
+    )
     @Operation(description ="Add Item To Cart")
     public ResponseEntity<ApiResponse> addItemToCart(@RequestBody AddItemRequest req, @RequestHeader("Authorization") String token) throws UserException, ProductException {
         User user = userService.findUserProfileByJwt(token);
