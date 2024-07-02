@@ -152,8 +152,8 @@ export default function ProductDetails() {
                             />
                         </div>
                         <div className="flex flex-wrap space-x-5 justify-center">
-                            {product.images.map((item) => (
-                                <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg max-w-[5rem] max-h-[5rem] mt-4">
+                            {product.images.map((item, index) => (
+                                <div key={index} className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg max-w-[5rem] max-h-[5rem] mt-4">
                                     <img
                                         src={item.src}
                                         alt={item.alt}
@@ -317,7 +317,7 @@ export default function ProductDetails() {
                         <Grid container spacing={7}>
                             <Grid item xs={7}>
                                 <div className="space-y-5 ">
-                                    {[1, 1, 1].map((item) => <ProductReviewCard />)}
+                                    {[1, 1, 1].map((item, index) => <ProductReviewCard key={index} />)}
                                 </div>
                             </Grid>
 
@@ -382,7 +382,7 @@ export default function ProductDetails() {
                 <section className="pt-10">
                     <h1 className="py-5 text-sl font-bold">Similar Products</h1>
                     <div className="flex flex-wrap space-y-5">
-                        {mens_kurta.map((item) => <HomeSectionCard product={item} />)}
+                        {mens_kurta.map((item, index) => <HomeSectionCard product={item} key={index} />)}
                     </div>
                 </section>
             </div>

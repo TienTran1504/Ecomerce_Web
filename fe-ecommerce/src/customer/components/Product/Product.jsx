@@ -364,7 +364,7 @@ export default function Product() {
                                             )}
                                         </Disclosure>
                                     ))}
-                                    {singleFilter.map((section) => (
+                                    {singleFilter.map((section, index) => (
                                         <Disclosure
                                             as="div"
                                             key={section.id}
@@ -397,8 +397,8 @@ export default function Product() {
                                                         </DisclosureButton>
                                                     </h3>
                                                     <DisclosurePanel className="pt-6">
-                                                        <div className="space-y-4">
-                                                            <FormControl>
+                                                        <div className="space-y-4" >
+                                                            <FormControl >
                                                                 <RadioGroup
                                                                     aria-labelledby="demo-radio-buttons-group-label"
                                                                     defaultValue="female"
@@ -429,8 +429,8 @@ export default function Product() {
                             {/* Product grid */}
                             <div className="lg:col-span-4 w-full">
                                 <div className="flex flex-wrap justify-center bg-white py-5">
-                                    {products.products && products.products?.content?.map((item) => (
-                                        <ProductCard product={item} />
+                                    {products.products && products.products?.content?.map((item, index) => (
+                                        <ProductCard product={item} key={index} />
                                     ))}
                                 </div>
                             </div>

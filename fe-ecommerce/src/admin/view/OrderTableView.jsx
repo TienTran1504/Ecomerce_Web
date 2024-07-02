@@ -42,16 +42,16 @@ const OrdersTableView = () => {
                                 >
                                     <TableCell align="" className=''>
                                         <AvatarGroup max={4} sx={{ justifyContent: 'start' }}>
-                                            {row.orderItems.map((item) =>
-                                                <Avatar src={item.product.imageUrl}>
+                                            {row.orderItems.map((item, index) =>
+                                                <Avatar src={item.product.imageUrl} key={index}>
                                                 </Avatar>
                                             )}
                                         </AvatarGroup>
 
                                     </TableCell>
                                     <TableCell component="left" scope="row">
-                                        {row.orderItems.map((item) =>
-                                            <p>
+                                        {row.orderItems.map((item, index) =>
+                                            <p key={index}>
                                                 {item.product.title}
                                             </p>
                                         )}

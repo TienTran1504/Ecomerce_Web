@@ -18,7 +18,7 @@ const Order = () => {
                         <div className='space-y-4 mt-10'>
                             <h1 className='font-semibold'>ORDER STATUS</h1>
                             {orderStatus.map((option, index) => (
-                                <div className='flex items-center'>
+                                <div key={index} className='flex items-center'>
                                     <input defaultValue={option.value} type="checkbox" className='h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500' />
 
                                     <label className='ml-3 text-sm text-gray-600' htmlFor={option.value}>

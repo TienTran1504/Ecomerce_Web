@@ -1,13 +1,13 @@
 import React from 'react';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
-import { mainCaroselData } from './MainCaroselData';
+import { mainCarouselData } from './MainCarouselData';
 
 
 
-const MainCarosel = () => {
-    const items = mainCaroselData.map((item, index) =>
-        <img src={item.image} alt={index} role='presentation' className="cursor-pointer -z-10" onClick={null} />)
+const HomeCarousel = () => {
+    const items = mainCarouselData.map((item, index) =>
+        <img src={item.image} key={index} alt={index} role='presentation' className="cursor-pointer -z-10" onClick={null} />)
 
     return (
         <AliceCarousel
@@ -21,4 +21,4 @@ const MainCarosel = () => {
     );
 };
 
-export default MainCarosel;
+export default HomeCarousel;
